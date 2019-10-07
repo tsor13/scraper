@@ -29,7 +29,6 @@ def get_resolution(stream):
 def scrape_from_url(video_url):
     try:
         logging.info('Downloading video:')
-        pdb.set_trace()
         yt = YouTube(video_url)
         if only_video:
             streams = yt.streams.filter(adaptive=True, file_extension = 'mp4').all()
