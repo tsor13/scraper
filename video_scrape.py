@@ -10,6 +10,14 @@ import pdb
 # scrapes all videos on front page for a search query
 # search given as command line argument
 
+# USAGE
+# One url:
+# python3 video_scrape.py <url>
+# Multiple urls:
+# python3 video_scrape.py <url1> <url2> ...
+# YouTube search query
+# python3 video_scrape.py <search query>
+
 # Program settings
 logging.basicConfig(level=logging.INFO)
 only_video = False
