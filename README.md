@@ -1,3 +1,6 @@
+Before first use, run command:
+    bash setup.sh
+
 video_scrape.py - to scrape youtube videos
     One url:
         python3 video_scrape.py <url>
@@ -7,8 +10,6 @@ video_scrape.py - to scrape youtube videos
         python3 video_scrape.py <search query>
 
 live_scrape.py - scrapes live youtube streams
-    Before first use, run command:
-        bash setup.sh
     Must be run in the setup virtual environment. Before use, run:
         source env/bin/activate
     To scrape from url (optional parameter: duration-number of seconds to record, default 60):

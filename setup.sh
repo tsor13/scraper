@@ -1,8 +1,8 @@
 #! /bin/bash
 
 # setup venv
-python3 -m venv env
-source env/bin/activate
+# python3 -m venv env
+# source env/bin/activate
 
 pip3 install -U opencv-python
 

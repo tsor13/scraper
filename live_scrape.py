@@ -36,6 +36,7 @@ fps = 40
 
 
 def scrape_live(url, duration=60, show=False):
+    print('Scraping')  
     # create pafy object. Just used to extract name of YouTube video
     pafy_vid = pafy.new(url)
     title = folder
@@ -68,11 +69,11 @@ def scrape_live(url, duration=60, show=False):
         key = cv2.waitKey(1) & 0xFF
         if key == ord('q'):
             break
-    print(frames / (time.time() - start))
     if show:
         cv2.destroyAllWindows()
     stream.stop()
     out.release()
+    print('Done!') 
 
 url = sys.argv[1]
 duration = 60
