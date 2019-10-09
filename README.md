@@ -10,7 +10,7 @@ video_scrape.py - to scrape youtube videos
         python3 video_scrape.py <search query>
 
 live_scrape.py - scrapes live youtube streams
-    Must be run in the setup virtual environment. Before use, run:
-        source env/bin/activate
     To scrape from url (optional parameter: duration-number of seconds to record, default 60):
         python3 live_scrape.py <url> <duration=60>
+    ex: 
+        python3 live_scrape.py https://www.youtube.com/watch?v=F109TZt3nRc&feature=youtu.be 60
