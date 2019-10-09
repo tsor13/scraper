@@ -1,10 +1,17 @@
 import sys
 import os
-from vidgear.vidgear.gears import CamGear
 import time
 import cv2
 import logging
 import pdb
+import pafy
+from datetime import datetime
+try:
+    from vidgear.gears import CamGear
+except:
+    from vidgear.vidgear.gears import CamGear
+# URL with setup directions:
+# https://github.com/abhiTronix/vidgear/issues/16#issuecomment-495456217
 
 # Video Scraper for Live YouTube
 # search given as command line argument
@@ -15,19 +22,36 @@ import pdb
 # python3 video_scrape.py <url> <seconds to record>
 
 # Program settings
-# MP4 TYPE
-output = 'video.mp4'
+folder = 'videos/'
+
+# ENCODING PARAMS
+file_type = 'mp4'
 codec = 'mp4v'
 # AVI TYPE
-# output = 'video.avi'
+# file_type = 'avi'
 # codec = 'MJPG'
+
+# FRAMES PER SECOND
 fps = 40
 
 
 def scrape_live(url, duration=60, show=False):
+    # create pafy object. Just used to extract name of YouTube video
+    pafy_vid = pafy.new(url)
+    title = folder
+    title += pafy_vid.title
+    # cleanup title so nicer for video_naming
+    title = title.replace(' ','-')
+    title = title.replace('.', '')
+    # get time
+    now = datetime.now()
+    # add time stamp
+    title += now.strftime("-%m_%d_%Y-%H_%M_%S")
+    file_name = title + '.' + file_type
+
     stream = CamGear(source=url, y_tube=True, time_delay=1, logging=True).start()
     fourcc = cv2.VideoWriter_fourcc(*codec)
-    out = cv2.VideoWriter(output, fourcc, fps, (1920, 1080))
+    out = cv2.VideoWriter(file_name, fourcc, fps, (1920, 1080))
 
     start = time.time()
     frames = 0
@@ -50,7 +74,6 @@ def scrape_live(url, duration=60, show=False):
     stream.stop()
     out.release()
 
-# Given search text, gets list of youtube videos
 url = sys.argv[1]
 duration = 60
 if len(sys.argv) > 2:
